@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { timer } from "rxjs";
 import Time from "./Time/Time";
+import { first } from 'rxjs/operators';
 
 const App = () => {
   const intervalRX = timer(1000);
@@ -52,7 +53,10 @@ const App = () => {
   };
 
   const handleDoubleClick = () => {
-    setIsRunning(false);
+    const dbTimer = timer(300)
+    dbTimer.pipe(first()).subscribe(()=> {
+      setIsRunning(false);
+    })
   };
 
   return (
