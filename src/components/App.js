@@ -4,7 +4,7 @@ import Time from "./Time/Time";
 
 const App = () => {
   const intervalRX = timer(1000);
-  const [seconds, setSeconds] = useState(58);
+  const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
@@ -16,14 +16,12 @@ const App = () => {
     interval = intervalRX.subscribe(() => {
       if (isRunning) {
         sec++;
-        console.log("seconds ", sec);
         setSeconds(sec);
-        if (seconds >= 60) {
+        if (seconds >= 59) {
           setSeconds(0);
           min++;
-          console.log("minutes", minutes);
           setMinutes(min);
-          if (minutes >= 60) {
+          if (minutes >= 59) {
             setMinutes(0);
             hh++;
             setHours(hh);
@@ -51,6 +49,7 @@ const App = () => {
     setSeconds(0);
     setMinutes(0);
     setHours(0);
+    setIsRunning(true);
   };
 
   const handleDoubleClick = () => {
