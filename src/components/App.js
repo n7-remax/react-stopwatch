@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { timer } from "rxjs";
+import Time from "./Time/Time";
 
 const App = () => {
   const intervalRX = timer(1000);
@@ -59,9 +60,7 @@ const App = () => {
   return (
     <div className="App">
       <div className="time">
-        {hours > 9 ? hours : "0" + hours} :{" "}
-        {minutes > 9 ? minutes : "0" + minutes} :{" "}
-        {seconds > 9 ? seconds : "0" + seconds}
+        <Time hours={hours} minutes={minutes} seconds={seconds} />
       </div>
       <div className="control-buttons">
         <button
