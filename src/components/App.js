@@ -27,7 +27,6 @@ const App = () => {
             setHours(hh);
           }
         }
-        console.log("tic");
       }
     });
     return () => interval.unsubscribe();
