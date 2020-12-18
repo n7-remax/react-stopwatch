@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { timer } from "rxjs";
 
 const App = () => {
+  const intervalRX = timer(1000);
   const [seconds, setSeconds] = useState(58);
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(0);
@@ -10,8 +12,8 @@ const App = () => {
     let sec = seconds;
     let min = minutes;
     let hh = hours;
-    if (isRunning) {
-      interval = setInterval(() => {
+    interval = intervalRX.subscribe(() => {
+      if (isRunning) {
         sec++;
         console.log("seconds ", sec);
         setSeconds(sec);
@@ -27,10 +29,10 @@ const App = () => {
           }
         }
         console.log("tic");
-      }, 1000);
-    }
-    return () => clearInterval(interval);
-  }, [isRunning, seconds, minutes, hours]);
+      }
+    });
+    return () => interval.unsubscribe();
+  }, [isRunning, seconds, minutes, hours, intervalRX]);
 
   const handleClick = (button) => {
     const running = isRunning;
