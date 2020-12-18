@@ -25,12 +25,10 @@ code {
   font-weight: bold;
   letter-spacing: 0.03em;
   text-align: center;
-  width: 300px;
 }
 
 .control-buttons {
   margin: 0 auto;
-  width: 200px;
 }
 .control-buttons button {
   background-color: #111;
